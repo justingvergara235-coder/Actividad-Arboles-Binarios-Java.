@@ -1,34 +1,32 @@
-
-name: Pruebas del proyecto Java
+name: Java Tests
 
 on:
   push:
-    branches: [principal]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  compilar-y-ejecutar:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Descargar repositorio
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Java
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Compilar archivos Java
+      - name: Compile
         run: |
           cd actividad_bst_java
           javac *.java
 
-      - name: Ejecutar programa
+      - name: Run
         run: |
           cd actividad_bst_java
           java Main
